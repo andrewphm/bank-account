@@ -1,8 +1,18 @@
+import random
+
+
 class BankAccount:
-    def __init__(self, full_name, account_number, balance):
+    balance = 0
+
+    def __init__(
+        self,
+        full_name,
+        account_type,
+        account_number=random.randint(1000000, 99999999),
+    ):
         self.full_name = full_name
         self.account_number = account_number
-        self.balance = balance
+        self.account_type = account_type
 
     def deposit(self, amount):
         self.balance += float(amount)
@@ -17,7 +27,11 @@ class BankAccount:
         return self.balance
 
     def add_interest(self):
-        interest = self.balance * 0.00083
+        if self.account_type == "savings":
+            interest_rate = 0.001
+        else:
+            interest_rate = 0.00083
+        interest = self.balance * interest_rate
         self.balance += round(interest, 2)
         print(f"Monthly interest added. New balance: ${self.balance:,.2f}")
 
@@ -29,7 +43,19 @@ class BankAccount:
         )
 
 
-andrew_bank = BankAccount("Andrew Pham", 12345678, 100000)
-andrew_bank.print_statement()
-andrew_bank.get_balance()
-andrew_bank.deposit(1234.126)
+andrew_account = BankAccount("Andrew Pham", "chequing")
+danny_account = BankAccount("Danny Phan", "savings")
+jane_account = BankAccount("Jane Doe", "chequing")
+
+andrew_account.deposit(100.24)
+andrew_account.get_balance()
+andrew_account.add_interest()
+
+
+mitchell_account = BankAccount("Mitchell Doe", "savings", "03141592")
+mitchell_account.deposit(400000)
+mitchell_account.print_statement()
+mitchell_account.add_interest()
+mitchell_account.print_statement()
+mitchell_account.withdraw(150)
+mitchell_account.print_statement()
