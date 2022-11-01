@@ -6,8 +6,9 @@
 
 ## About
 
-A simple python application that simulates a bank account using Object Orienteted Programming Principles.
+A simple python application that simulates a bank account using Object Orienteted Programming Principles - specifically encapsulation.
 
 ## Features
 
-- Encapsulation principle.
+- Ability to create user bank account object instances from a class.
+- Methods that allow you to deposit, withdraw, add interest, and print statements.
